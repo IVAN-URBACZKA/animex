@@ -2,8 +2,6 @@
 
 ## Site d'informations sur les animés
 
-Créer un site d'informations sur les animés :)
-
 ### Back-end
 
 - Api Rest avec api Platform, Respectez les contraintes Restful
