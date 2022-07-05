@@ -52,5 +52,4 @@ o Charte graphique : récapitulatif des couleurs et code couleur, de la
 police, et des logos
 o Maquette : maquettage du projet, avec la charte graphique inclus, et 
 au moins certaines vues en responsivité
-o Backlog : rédaction du backlog sur Trello
 o Conception de la base de données (MCD/MLD,etc…) : «Looping
