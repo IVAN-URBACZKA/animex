@@ -1,0 +1,87 @@
+CREATE TABLE Author(
+   Id_Author SERIAL,
+   first_name VARCHAR(50)  NOT NULL,
+   last_name VARCHAR(50)  NOT NULL,
+   nationality VARCHAR(50) ,
+   PRIMARY KEY(Id_Author)
+);
+
+CREATE TABLE Type(
+   Id_Type SERIAL,
+   name VARCHAR(50)  NOT NULL,
+   PRIMARY KEY(Id_Type)
+);
+
+CREATE TABLE Person(
+   Id_Person SERIAL,
+   last_name VARCHAR(50)  NOT NULL,
+   first_name VARCHAR(50)  NOT NULL,
+   email VARCHAR(50)  NOT NULL,
+   password VARCHAR(50) ,
+   PRIMARY KEY(Id_Person)
+);
+
+CREATE TABLE Favorite_Anime(
+   Id_Favorite_Anime SERIAL,
+   Id_Person INTEGER NOT NULL,
+   PRIMARY KEY(Id_Favorite_Anime),
+   UNIQUE(Id_Person),
+   FOREIGN KEY(Id_Person) REFERENCES Person(Id_Person)
+);
+
+CREATE TABLE Watch_List(
+   Id_Watch_List SERIAL,
+   Id_Person INTEGER NOT NULL,
+   PRIMARY KEY(Id_Watch_List),
+   UNIQUE(Id_Person),
+   FOREIGN KEY(Id_Person) REFERENCES Person(Id_Person)
+);
+
+CREATE TABLE Role(
+   Id_Role SERIAL,
+   name_role VARCHAR(50)  NOT NULL,
+   PRIMARY KEY(Id_Role)
+);
+
+CREATE TABLE Anime(
+   Id_Anime SERIAL,
+   title VARCHAR(50)  NOT NULL,
+   country VARCHAR(50) ,
+   release_date DATE,
+   description VARCHAR(255)  NOT NULL,
+   Id_Author INTEGER NOT NULL,
+   PRIMARY KEY(Id_Anime),
+   FOREIGN KEY(Id_Author) REFERENCES Author(Id_Author)
+);
+
+CREATE TABLE Etre(
+   Id_Anime INTEGER,
+   Id_Type INTEGER,
+   PRIMARY KEY(Id_Anime, Id_Type),
+   FOREIGN KEY(Id_Anime) REFERENCES Anime(Id_Anime),
+   FOREIGN KEY(Id_Type) REFERENCES Type(Id_Type)
+);
+
+CREATE TABLE Contenir(
+   Id_Anime INTEGER,
+   Id_Favorite_Anime INTEGER,
+   PRIMARY KEY(Id_Anime, Id_Favorite_Anime),
+   FOREIGN KEY(Id_Anime) REFERENCES Anime(Id_Anime),
+   FOREIGN KEY(Id_Favorite_Anime) REFERENCES Favorite_Anime(Id_Favorite_Anime)
+);
+
+CREATE TABLE Inclure(
+   Id_Anime INTEGER,
+   Id_Watch_List INTEGER,
+   PRIMARY KEY(Id_Anime, Id_Watch_List),
+   FOREIGN KEY(Id_Anime) REFERENCES Anime(Id_Anime),
+   FOREIGN KEY(Id_Watch_List) REFERENCES Watch_List(Id_Watch_List)
+);
+
+CREATE TABLE Associer(
+   Id_Person INTEGER,
+   Id_Role INTEGER,
+   PRIMARY KEY(Id_Person, Id_Role),
+   FOREIGN KEY(Id_Person) REFERENCES Person(Id_Person),
+   FOREIGN KEY(Id_Role) REFERENCES Role(Id_Role)
+);
